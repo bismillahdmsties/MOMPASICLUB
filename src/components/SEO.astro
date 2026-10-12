@@ -13,40 +13,40 @@ export interface Props {
 }
 
 const {
-  title = 'TEMAN BUNDA - Sahabat Nutrisi & Panduan MPASI Masa Golden Age',
+  title = 'MOMPASICLUB - Sahabat Nutrisi & Panduan MPASI Masa Golden Age',
   description = 'Panduan lengkap MPASI sehat bergizi untuk ibu newborn. Optimalkan pertumbuhan dan kecerdasan anak di masa golden age dengan nutrisi seimbang anti stunting.',
   image = 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1200&q=80',
   canonical = Astro.url.href,
   type = 'website',
-  author = 'Tim Ahli Teman Bunda',
+  author = 'Tim Ahli MOMPASICLUB',
   publishDate,
   modifiedDate,
-  tags = ['MPASI', 'Golden Age', 'Gizi Anak', 'Teman Bunda'],
+  tags = ['MPASI', 'Golden Age', 'Gizi Anak', 'MOMPASICLUB'],
   breadcrumbs = [],
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://temanbunda.vercel.app';
-const fullTitle = title.includes('TEMAN BUNDA') ? title : `${title} | TEMAN BUNDA`;
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://mompasiclub.vercel.app';
+const fullTitle = title.includes('MOMPASICLUB') ? title : `${title} | MOMPASICLUB`;
 const resolvedImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
 // Schema.org JSON-LD definitions
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Teman Bunda',
+  name: 'MOMPASICLUB',
   url: siteUrl,
   logo: `${siteUrl}/favicon.svg`,
   description: 'Pusat Edukasi MPASI dan Gizi Anak Masa Golden Age untuk Ibu Newborn Indonesia',
   sameAs: [
-    'https://instagram.com/temanbunda.id',
-    'https://tiktok.com/@temanbunda'
+    'https://instagram.com/mompasiclub',
+    'https://tiktok.com/@mompasiclub'
   ]
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Teman Bunda - MPASI & Gizi Golden Age',
+  name: 'MOMPASICLUB - MPASI & Gizi Golden Age',
   url: siteUrl,
   potentialAction: {
     '@type': 'SearchAction',
@@ -73,7 +73,7 @@ const articleSchema = type === 'article' ? {
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Teman Bunda',
+    name: 'MOMPASICLUB',
     logo: {
       '@type': 'ImageObject',
       url: `${siteUrl}/favicon.svg`
@@ -111,7 +111,7 @@ const breadcrumbsSchema = breadcrumbs.length > 0 ? {
 <meta property="og:description" content={description} />
 <meta property="og:image" content={resolvedImage} />
 <meta property="og:image:alt" content={fullTitle} />
-<meta property="og:site_name" content="Teman Bunda" />
+<meta property="og:site_name" content="MOMPASICLUB" />
 <meta property="og:locale" content="id_ID" />
 
 <!-- Twitter -->

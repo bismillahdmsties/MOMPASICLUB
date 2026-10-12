@@ -1,8 +1,8 @@
 {
-  "name": "teman-bunda-mpasi",
+  "name": "mompasiclub",
   "type": "module",
   "version": "1.0.0",
-  "description": "Website Blog & Panduan MPASI Teman Bunda - Gizi Terbaik untuk Buah Hati di Golden Age",
+  "description": "Website Blog & Panduan MPASI MOMPASICLUB - Gizi Terbaik untuk Buah Hati di Golden Age",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

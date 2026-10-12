@@ -48,7 +48,7 @@ const fallbackPosts: NotionPost[] = [
     tags: ['Golden Age', 'Gizi Anak', 'MPASI Pertama', 'Nutrisi Otak'],
     excerpt: 'Memahami nutrisi makro dan mikro esensial di 1000 hari pertama kehidupan untuk optimasi kecerdasan dan pertumbuhan fisik buah hati Bunda.',
     coverImage: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1200&q=80',
-    author: 'Tim Ahli Gizi Teman Bunda',
+    author: 'Tim Ahli Gizi MOMPASICLUB',
     readingTime: '5 menit baca',
     contentHtml: `
       <h2>Mengapa Masa Golden Age Sangat Krusial?</h2>
@@ -203,7 +203,7 @@ function renderNotionBlocksToHtml(blocks: any[]): string {
           return `<div class="callout"><span class="text-2xl">${value.icon?.emoji || '💡'}</span><div>${richTextToHtml(value.rich_text)}</div></div>`;
         case 'image':
           const src = value.type === 'external' ? value.external.url : value.file?.url;
-          const caption = value.caption ? richTextToHtml(value.caption) : 'Foto Panduan MPASI Teman Bunda';
+          const caption = value.caption ? richTextToHtml(value.caption) : 'Foto Panduan MPASI MOMPASICLUB';
           return `<figure class="my-6"><img src="${src}" alt="${caption}" loading="lazy" class="w-full rounded-2xl shadow-md object-cover max-h-96" /><figcaption class="text-center text-sm text-gray-500 mt-2">${caption}</figcaption></figure>`;
         case 'divider':
           return `<hr class="my-8 border-brand-100 dark:border-brand-900" />`;
@@ -269,7 +269,7 @@ export async function getDatabase(): Promise<NotionPost[]> {
         tags,
         excerpt,
         coverImage,
-        author: 'Tim Teman Bunda',
+        author: 'Tim MOMPASICLUB',
         readingTime: '5 menit baca',
       };
     });
@@ -281,7 +281,7 @@ export async function getDatabase(): Promise<NotionPost[]> {
 
     return posts;
   } catch (error) {
-    console.warn('⚠️ Gagal terhubung ke Notion API. Menggunakan database lokal Teman Bunda:', error);
+    console.warn('⚠️ Gagal terhubung ke Notion API. Menggunakan database lokal MOMPASICLUB:', error);
     return fallbackPosts.filter((p) => p.status === 'Published');
   }
 }
