@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Kontak & Konsultasi', item: '/kontak' },
+];
+---
+
+<Layout
+  title="Kontak & Konsultasi MPASI | TEMAN BUNDA"
+  description="Hubungi tim Teman Bunda untuk saran resep, pertanyaan seputar MPASI masa golden age, atau kolaborasi edukasi gizi anak."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <div class="text-center space-y-4 mb-12">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 px-4 py-1.5 rounded-full border border-brand-200 dark:border-brand-900">
+        Ruang Sahabat Bunda
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-display font-extrabold text-gray-900 dark:text-white">
+        Ada Pertanyaan Seputar MPASI Si Kecil?
+      </h1>
+      <p class="text-base text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
+        Kirimkan pesan, pertanyaan seputar tekstur/alergi makanan, atau saran resep yang ingin Bunda pelajari selanjutnya.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      
+      <!-- Contact Info / Card -->
+      <div class="md:col-span-5 p-8 rounded-3xl bg-brand-50/80 dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 space-y-6">
+        <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white">
+          Layanan Teman Bunda
+        </h3>
+        
+        <div class="space-y-4 text-sm text-gray-600 dark:text-gray-300">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">📧</span>
+            <span>halo@temanbunda.id</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xl">💬</span>
+            <span>WhatsApp Komunitas Bunda: +62 812-3456-7890</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xl">⏰</span>
+            <span>Jam Operasional: Senin - Sabtu (08.00 - 17.00 WIB)</span>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white dark:bg-zinc-950 border border-brand-100 dark:border-zinc-800 text-xs text-gray-500 leading-relaxed">
+          🌸 Bergabunglah di sesi Live Q&A bulanan kami bersama dokter spesialis anak di Instagram @temanbunda.id.
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="md:col-span-7 p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-soft-card">
+        <form id="contact-form" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1.5">
+              Nama Bunda
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="Contoh: Bunda Aisyah"
+              class="w-full px-4 py-3 rounded-xl bg-brand-50/40 dark:bg-zinc-950 border border-brand-100 dark:border-zinc-800 text-sm focus:outline-none focus:border-brand-500 transition-colors"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1.5">
+                Email
+              </label>
+              <input
+                type="email"
+                required
+                placeholder="nama@email.com"
+                class="w-full px-4 py-3 rounded-xl bg-brand-50/40 dark:bg-zinc-950 border border-brand-100 dark:border-zinc-800 text-sm focus:outline-none focus:border-brand-500 transition-colors"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1.5">
+                Usia Si Kecil
+              </label>
+              <select class="w-full px-4 py-3 rounded-xl bg-brand-50/40 dark:bg-zinc-950 border border-brand-100 dark:border-zinc-800 text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                <option>Newborn (0 - 5 Bulan)</option>
+                <option>Awal MPASI (6 - 8 Bulan)</option>
+                <option>MPASI Lanjutan (9 - 11 Bulan)</option>
+                <option>Balita (12 - 24 Bulan)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300 mb-1.5">
+              Pertanyaan atau Pesan
+            </label>
+            <textarea
+              rows="4"
+              required
+              placeholder="Ceritakan hal yang ingin Bunda tanyakan seputar MPASI atau nutrisi anak..."
+              class="w-full px-4 py-3 rounded-xl bg-brand-50/40 dark:bg-zinc-950 border border-brand-100 dark:border-zinc-800 text-sm focus:outline-none focus:border-brand-500 transition-colors"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3.5 rounded-full font-bold text-sm bg-brand-500 hover:bg-brand-600 text-white shadow-soft-pink transition-all duration-200"
+          >
+            Kirim Pesan ke Tim Teman Bunda 💌
+          </button>
+        </form>
+
+        <script>
+          const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
+          contactForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih Bunda! Pesan Anda telah diterima tim kami.');
+            contactForm.reset();
+          });
+        </script>
+      </div>
+
+    </div>
+  </div>
+</Layout>

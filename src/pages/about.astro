@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Tentang Teman Bunda', item: '/about' },
+];
+---
+
+<Layout
+  title="Tentang Teman Bunda - Sahabat Nutrisi MPASI Golden Age"
+  description="Pelajari visi, misi, dan komitmen Teman Bunda dalam mendampingi ibu newborn menyediakan nutrisi terbaik di 1000 hari pertama kehidupan anak."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <!-- Hero Section -->
+    <div class="text-center space-y-4 mb-16">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 px-4 py-1.5 rounded-full border border-brand-200 dark:border-brand-900">
+        Cerita & Misi Kami
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-gray-900 dark:text-white">
+        Dampingi Ibu Newborn Hadirkan Gizi Terbaik Tanpa Cemas
+      </h1>
+      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Teman Bunda lahir dari kegelisahan jutaan ibu baru saat memasuki fase MPASI (Makanan Pendamping ASI). Kami hadir sebagai sahabat terpercaya yang menyederhanakan sains nutrisi anak menjadi panduan harian yang praktis dan lezat.
+      </p>
+    </div>
+
+    <!-- Image Banner -->
+    <div class="rounded-3xl overflow-hidden shadow-soft-pink border border-brand-100 dark:border-brand-900 mb-16">
+      <img
+        src="https://images.unsplash.com/photo-1544126592-807ade215a0b?auto=format&fit=crop&w=1200&q=80"
+        alt="Teman Bunda Mendampingi Ibu Newborn dan Bayi"
+        loading="lazy"
+        class="w-full h-80 sm:h-96 object-cover"
+      />
+    </div>
+
+    <!-- 3 Nilai Utama / Visi Misi -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm space-y-3">
+        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900 flex items-center justify-center text-2xl">
+          🎯
+        </div>
+        <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white">Visi Kami</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Mewujudkan generasi emas Indonesia yang bebas stunting, cerdas, dan tumbuh optimal melalui pemenuhan gizi seimbang di 1000 Hari Pertama Kehidupan.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm space-y-3">
+        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900 flex items-center justify-center text-2xl">
+          🔬
+        </div>
+        <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white">Berbasis Sains</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Semua konten dan resep dikurasi sesuai panduan Ikatan Dokter Anak Indonesia (IDAI) dan World Health Organization (WHO), tanpa mitos yang membingungkan.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm space-y-3">
+        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900 flex items-center justify-center text-2xl">
+          💖
+        </div>
+        <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white">Empati & Dukungan</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Kami memahami lelahnya fase newborn dan drama GTM. Teman Bunda menjadi ruang aman penuh tips positif tanpa menghakimi pilihan ibu.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tim Redaksi & Ahli -->
+    <div class="p-8 sm:p-12 rounded-3xl bg-brand-50/70 dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 text-center space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-display font-bold text-gray-900 dark:text-white">
+        Komitmen Kami untuk Setiap Suapan Buah Hati
+      </h2>
+      <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Kami percaya bahwa gizi terbaik tidak harus mahal atau rumit. Dengan memaksimalkan bahan lokal seperti hati ayam, telur, santan, dan ikan kembung, setiap anak berhak mendapatkan nutrisi kelas dunia.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/panduan-gizi"
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-full font-bold text-sm bg-brand-500 text-white shadow-soft-pink hover:bg-brand-600 transition-all"
+        >
+          Lihat Panduan Gizi Golden Age
+        </a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

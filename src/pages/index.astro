@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getRecentPosts } from '../lib/notion';
+
+const recentPosts = await getRecentPosts(3);
+
+const metaDescription = "Temukan pentingnya keseimbangan gizi untuk pertumbuhan anak dimasa golden age dengan panduan MPASI dari Teman Bunda khusus ibu newborn di Indonesia.";
+---
+
+<Layout
+  title="TEMAN BUNDA - Berikan Gizi Terbaik untuk Buah Hati dengan MPASI"
+  description={metaDescription}
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Why Choose Us / 3 Fitur Unggulan -->
+  <section class="py-16 md:py-24 bg-white dark:bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 px-4 py-1.5 rounded-full border border-brand-200 dark:border-brand-900">
+          Mengapa Teman Bunda?
+        </span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-gray-900 dark:text-white">
+          Fondasi Tumbuh Kembang Emas Anak Bersama Kami
+        </h2>
+        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+          Pentingnya keseimbangan gizi untuk pertumbuhan anak di masa golden age membutuhkan panduan yang tepat, mudah dipraktikkan, dan didukung bukti ilmiah.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Poin 1 -->
+        <div class="p-8 rounded-3xl bg-brand-50/50 dark:bg-zinc-900/60 border border-brand-100 dark:border-brand-900/60 hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-300 group hover:-translate-y-1">
+          <div class="w-14 h-14 rounded-2xl bg-brand-500 text-white flex items-center justify-center text-2xl shadow-soft-pink mb-6 group-hover:scale-110 transition-transform">
+            🥩
+          </div>
+          <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3">
+            1. Menu 4 Bintang Tinggi Zat Besi
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Fokus pada protein hewani bernilai biologis tinggi (hati ayam, daging sapi, ikan lokal) dan lemak sehat untuk mencegah anemia dan stunting secara efektif.
+          </p>
+        </div>
+
+        <!-- Poin 2 -->
+        <div class="p-8 rounded-3xl bg-brand-50/50 dark:bg-zinc-900/60 border border-brand-100 dark:border-brand-900/60 hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-300 group hover:-translate-y-1">
+          <div class="w-14 h-14 rounded-2xl bg-brand-500 text-white flex items-center justify-center text-2xl shadow-soft-pink mb-6 group-hover:scale-110 transition-transform">
+            📈
+          </div>
+          <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3">
+            2. Panduan Usia Emas Step-by-Step
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Instruksi kenaikan tekstur bertahap dari bubur saring lembut (6 bulan), cincang halus (9 bulan), hingga finger food keluarga (12+ bulan) sesuai tahapan oromotor.
+          </p>
+        </div>
+
+        <!-- Poin 3 -->
+        <div class="p-8 rounded-3xl bg-brand-50/50 dark:bg-zinc-900/60 border border-brand-100 dark:border-brand-900/60 hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-300 group hover:-translate-y-1">
+          <div class="w-14 h-14 rounded-2xl bg-brand-500 text-white flex items-center justify-center text-2xl shadow-soft-pink mb-6 group-hover:scale-110 transition-transform">
+            💡
+          </div>
+          <h3 class="text-xl font-display font-bold text-gray-900 dark:text-white mb-3">
+            3. Resep Praktis Anti GTM
+          </h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Metode <em>Responsive Feeding</em> dan variasi resep aromatik lokal yang disukai bayi tanpa perlu garam-gula berlebih, membuat sesi makan bebas stres bagi Bunda.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Kategori Tahapan MPASI Interaktif -->
+  <section class="py-12 bg-brand-50/40 dark:bg-zinc-900/30 border-y border-brand-100 dark:border-brand-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+        <div>
+          <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white">
+            Eksplorasi MPASI Berdasarkan Usia Buah Hati
+          </h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            Sesuaikan resep dan tekstur dengan kesiapan saluran cerna si kecil
+          </p>
+        </div>
+        <a href="/panduan-gizi" class="inline-flex items-center text-sm font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700">
+          Lihat Panduan Detail Tekstur →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <a href="/blog?tag=MPASI 6 Bulan" class="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900/70 hover:shadow-soft-pink transition-all text-center group">
+          <span class="text-3xl block mb-2 group-hover:scale-110 transition-transform">🥣</span>
+          <h3 class="font-bold text-gray-900 dark:text-white text-sm sm:text-base">Usia 6 - 8 Bulan</h3>
+          <p class="text-xs text-gray-500 mt-1">Puree saring halus & lumat</p>
+        </a>
+
+        <a href="/blog?tag=MPASI 9 Bulan" class="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900/70 hover:shadow-soft-pink transition-all text-center group">
+          <span class="text-3xl block mb-2 group-hover:scale-110 transition-transform">🥑</span>
+          <h3 class="font-bold text-gray-900 dark:text-white text-sm sm:text-base">Usia 9 - 11 Bulan</h3>
+          <p class="text-xs text-gray-500 mt-1">Cincang halus & finger food</p>
+        </a>
+
+        <a href="/blog?tag=MPASI 12 Bulan" class="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900/70 hover:shadow-soft-pink transition-all text-center group">
+          <span class="text-3xl block mb-2 group-hover:scale-110 transition-transform">🍲</span>
+          <h3 class="font-bold text-gray-900 dark:text-white text-sm sm:text-base">Usia 12+ Bulan</h3>
+          <p class="text-xs text-gray-500 mt-1">Menu makanan keluarga</p>
+        </a>
+
+        <a href="/blog?tag=BB Booster" class="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900/70 hover:shadow-soft-pink transition-all text-center group">
+          <span class="text-3xl block mb-2 group-hover:scale-110 transition-transform">✨</span>
+          <h3 class="font-bold text-gray-900 dark:text-white text-sm sm:text-base">BB Booster</h3>
+          <p class="text-xs text-gray-500 mt-1">Padat kalori & lemak sehat</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Blog Terbaru dari Notion CMS -->
+  <section class="py-16 md:py-24 bg-white dark:bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 px-4 py-1.5 rounded-full border border-brand-200 dark:border-brand-900">
+            Edukasi Terkini
+          </span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-gray-900 dark:text-white mt-3">
+            Artikel & Resep MPASI Terbaru
+          </h2>
+          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-1">
+            Ditulis langsung oleh tim ahli gizi Teman Bunda dan terhubung ke Notion CMS.
+          </p>
+        </div>
+
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-sm font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 transition-colors"
+        >
+          Lihat Semua Artikel ({recentPosts.length}+)
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Grid Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {recentPosts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Section: [BERIKAN GIZI TERBAIK UNTUK BUAH HATI DENGAN MPASI] -->
+  <section class="py-16 bg-gradient-to-r from-brand-600 via-brand-500 to-rose-600 text-white relative overflow-hidden">
+    <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+      
+      <span class="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-wider text-white">
+        Golden Age Hanya Sekali Seumur Hidup
+      </span>
+
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold tracking-tight">
+        BERIKAN GIZI TERBAIK UNTUK BUAH HATI DENGAN MPASI
+      </h2>
+
+      <p class="text-base sm:text-lg text-rose-50 max-w-2xl mx-auto leading-relaxed">
+        Jangan biarkan rasa bingung menghambat masa depan si kecil. Bergabunglah bersama puluhan ribu ibu lainnya untuk menciptakan menu MPASI seimbang yang kaya nutrisi setiap hari.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a
+          href="/panduan-gizi"
+          class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-brand-600 bg-white hover:bg-rose-50 shadow-xl transition-all duration-300 transform hover:scale-105"
+        >
+          Download & Baca Panduan Lengkap
+        </a>
+        <a
+          href="/kontak"
+          class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-white bg-brand-700/50 hover:bg-brand-700/80 border border-white/30 backdrop-blur-md transition-all duration-300"
+        >
+          Tanya Tim Ahli Gizi
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

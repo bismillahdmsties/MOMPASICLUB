@@ -1,0 +1,44 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="py-3 px-4 mb-6 rounded-xl bg-brand-50/70 dark:bg-brand-950/40 border border-brand-100 dark:border-brand-900/50 text-sm">
+  <ol class="flex flex-wrap items-center gap-2 text-gray-600 dark:text-gray-300">
+    <li class="inline-flex items-center">
+      <a href="/" class="inline-flex items-center text-brand-600 dark:text-brand-400 hover:text-brand-700 font-medium transition-colors">
+        <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+        </svg>
+        Beranda
+      </a>
+    </li>
+    {items.map((crumb, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li class="inline-flex items-center">
+          <svg class="w-4 h-4 text-brand-300 dark:text-brand-700 mx-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          {isLast ? (
+            <span class="text-gray-800 dark:text-gray-100 font-semibold max-w-xs md:max-w-md truncate" aria-current="page">
+              {crumb.name}
+            </span>
+          ) : (
+            <a href={crumb.item} class="text-brand-600 dark:text-brand-400 hover:text-brand-700 font-medium transition-colors">
+              {crumb.name}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

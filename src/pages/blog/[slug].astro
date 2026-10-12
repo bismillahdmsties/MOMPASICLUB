@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getDatabase, getPostBySlug, getRelatedPosts } from '../../lib/notion';
+
+export async function getStaticPaths() {
+  const posts = await getDatabase();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug as string);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const relatedPosts = await getRelatedPosts(post.slug, post.tags, 3);
+
+const formattedDate = new Date(post.date).toLocaleDateString('id-ID', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const breadcrumbItems = [
+  { name: 'Blog MPASI', item: '/blog' },
+  { name: post.title, item: `/blog/${post.slug}` },
+];
+---
+
+<Layout
+  title={`${post.title} | TEMAN BUNDA`}
+  description={post.excerpt.slice(0, 160)}
+  image={post.coverImage}
+  type="article"
+  author={post.author}
+  publishDate={post.date}
+  tags={post.tags}
+  breadcrumbs={breadcrumbItems}
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    
+    <!-- Breadcrumb Navigation -->
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <!-- Article Header -->
+    <header class="space-y-6 mb-8 text-center sm:text-left">
+      
+      <!-- Tags List -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+        {post.tags.map((tag) => (
+          <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-brand-50 dark:bg-brand-950/70 text-brand-600 dark:text-brand-300 border border-brand-200 dark:border-brand-900">
+            #{tag}
+          </span>
+        ))}
+      </div>
+
+      <!-- H1 Title -->
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-gray-900 dark:text-white leading-tight">
+        {post.title}
+      </h1>
+
+      <!-- Meta Details: Author, Date, Reading Time -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6 text-sm text-gray-600 dark:text-gray-400 py-3 border-y border-brand-100 dark:border-zinc-800">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-brand-100 dark:bg-brand-900 flex items-center justify-center text-sm font-bold text-brand-600 dark:text-brand-300">
+            👩‍⚕️
+          </div>
+          <span class="font-semibold text-gray-800 dark:text-gray-200">{post.author}</span>
+        </div>
+
+        <span class="hidden sm:inline">•</span>
+
+        <div class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <time datetime={post.date}>{formattedDate}</time>
+        </div>
+
+        <span class="hidden sm:inline">•</span>
+
+        <div class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>{post.readingTime}</span>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- Cover Image (Responsive & SEO Alt) -->
+    <div class="mb-10 rounded-3xl overflow-hidden shadow-soft-pink border border-brand-100 dark:border-brand-950">
+      <img
+        src={post.coverImage}
+        alt={`${post.title} - TEMAN BUNDA`}
+        loading="lazy"
+        class="w-full h-72 sm:h-96 md:h-[450px] object-cover"
+      />
+    </div>
+
+    <!-- Article Content (Rendered Notion Blocks / HTML) -->
+    <div class="notion-content prose prose-lg dark:prose-invert max-w-none mb-12">
+      {post.contentHtml && <div set:html={post.contentHtml} />}
+    </div>
+
+    <!-- Share & Feedback Card -->
+    <div class="p-6 rounded-3xl bg-brand-50/70 dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 flex flex-col sm:flex-row items-center justify-between gap-4 mb-16">
+      <div>
+        <p class="font-bold text-gray-900 dark:text-white text-sm">Bantu Bunda Lain Mengetahui Informasi Ini</p>
+        <p class="text-xs text-gray-500 dark:text-gray-400">Bagikan panduan gizi ini ke grup WhatsApp keluarga & sesama ibu newborn</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          onclick={`navigator.clipboard.writeText(window.location.href); alert('Link artikel berhasil disalin!');`}
+          class="px-4 py-2 rounded-full text-xs font-bold bg-white dark:bg-zinc-800 text-brand-600 dark:text-brand-300 border border-brand-200 dark:border-brand-800 shadow-sm hover:bg-brand-500 hover:text-white transition-all flex items-center gap-1.5"
+        >
+          <span>📋</span> Salin Link
+        </button>
+      </div>
+    </div>
+
+    <!-- Author Profile Box -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm flex items-start gap-4 mb-16">
+      <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-900/60 flex items-center justify-center text-2xl flex-shrink-0">
+        🌸
+      </div>
+      <div class="space-y-1">
+        <h3 class="font-display font-bold text-gray-900 dark:text-white">{post.author}</h3>
+        <p class="text-xs text-brand-600 dark:text-brand-400 font-semibold">Dewan Redaksi Edukasi MPASI Teman Bunda</p>
+        <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed pt-1">
+          Berkomitmen menyajikan informasi gizi anak berbasis sains, panduan IDAI & WHO yang mudah dipahami oleh ibu newborn di seluruh Indonesia.
+        </p>
+      </div>
+    </div>
+
+    <!-- Related Articles Section (Internal Linking for SEO) -->
+    {relatedPosts.length > 0 && (
+      <section class="border-t border-brand-100 dark:border-zinc-800 pt-12 mb-12">
+        <div class="flex items-center gap-2 mb-8">
+          <span class="text-2xl">📖</span>
+          <div>
+            <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white">
+              Artikel & Resep Terkait
+            </h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              Rekomendasi bacaan untuk memperkaya pengetahuan gizi si kecil
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedPosts.map((related) => (
+            <BlogCard post={related} />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Bottom CTA Card -->
+    <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-brand-600 to-rose-500 text-white text-center space-y-4 shadow-soft-pink">
+      <h3 class="text-2xl font-display font-extrabold">
+        Ingin Panduan Menu MPASI 30 Hari Lengkap?
+      </h3>
+      <p class="text-sm text-rose-50 max-w-xl mx-auto">
+        Dapatkan panduan jadwal makan, komposisi makronutrien, dan daftar belanja bahan lokal untuk masa golden age.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/panduan-gizi"
+          class="inline-block px-8 py-3.5 rounded-full font-bold text-sm bg-white text-brand-600 hover:bg-rose-50 transition-all shadow-lg"
+        >
+          Akses Panduan Golden Age Sekarang
+        </a>
+      </div>
+    </div>
+
+  </article>
+</Layout>

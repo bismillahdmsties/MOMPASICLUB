@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getDatabase } from '../../lib/notion';
+
+const allPosts = await getDatabase();
+const featuredPost = allPosts[0];
+const remainingPosts = allPosts.slice(1);
+
+// Extract all unique tags
+const allTags = Array.from(new Set(allPosts.flatMap((post) => post.tags)));
+
+const breadcrumbItems = [
+  { name: 'Blog & Resep MPASI', item: '/blog' },
+];
+---
+
+<Layout
+  title="Blog & Resep MPASI Terlengkap | TEMAN BUNDA"
+  description="Kumpulan artikel edukasi gizi balita, jadwal makan, tips anti GTM, dan resep MPASI bergizi tinggi untuk ibu newborn."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <!-- Header Section -->
+    <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 px-4 py-1.5 rounded-full border border-brand-200 dark:border-brand-900">
+        Edukasi & Resep
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-gray-900 dark:text-white">
+        Arsip MPASI & Gizi Golden Age
+      </h1>
+      <p class="text-base text-gray-600 dark:text-gray-400">
+        Jelajahi panduan praktis, resep makanan bernutrisi tinggi, dan tips parenting dari dokter spesialis serta ahli gizi anak.
+      </p>
+    </div>
+
+    <!-- Filter Tags -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <a
+        href="/blog"
+        class="px-4 py-2 rounded-full text-xs font-bold bg-brand-500 text-white shadow-soft-pink"
+      >
+        Semua Topik ({allPosts.length})
+      </a>
+      {allTags.map((tag) => (
+        <span
+          class="px-4 py-2 rounded-full text-xs font-semibold bg-brand-50 dark:bg-zinc-900 text-gray-700 dark:text-gray-300 border border-brand-100 dark:border-brand-900 hover:border-brand-300 transition-colors"
+        >
+          #{tag}
+        </span>
+      ))}
+    </div>
+
+    <!-- Featured Post Highlight -->
+    {featuredPost && (
+      <div class="mb-14">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xl">⭐</span>
+          <h2 class="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wider">
+            Artikel Pilihan Utama
+          </h2>
+        </div>
+        <BlogCard post={featuredPost} featured={true} />
+      </div>
+    )}
+
+    <!-- Grid of Remaining Posts -->
+    <div>
+      <h2 class="text-xl font-bold font-display text-gray-900 dark:text-white mb-6">
+        Panduan Lainnya ({remainingPosts.length})
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {remainingPosts.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+    </div>
+
+  </div>
+</Layout>

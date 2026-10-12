@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Panduan Gizi Golden Age', item: '/panduan-gizi' },
+];
+---
+
+<Layout
+  title="Panduan Gizi MPASI Masa Golden Age | TEMAN BUNDA"
+  description="Panduan lengkap nutrisi 1000 hari pertama kehidupan (Golden Age), komposisi menu 4 bintang, jadwal makan bayi, dan kenaikan tekstur MPASI."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <!-- Header Section -->
+    <div class="text-center space-y-4 mb-16">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/80 px-4 py-1.5 rounded-full border border-brand-200 dark:border-brand-900">
+        Pilar Emas Pertumbuhan
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-gray-900 dark:text-white">
+        Pentingnya Keseimbangan Gizi di Masa Golden Age
+      </h1>
+      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        1000 Hari Pertama Kehidupan (0-2 tahun) adalah periode kritis perkembangan otak, imunitas, dan postur fisik anak. Temukan panduan menu seimbang yang mudah dipraktikkan.
+      </p>
+    </div>
+
+    <!-- 4 Bintang Makronutrien Section -->
+    <div class="space-y-8 mb-16">
+      <div class="border-b border-brand-100 dark:border-zinc-800 pb-4">
+        <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white flex items-center gap-2">
+          <span>⭐</span> Komposisi Menu 4 Bintang Rekomendasi IDAI
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Bintang 1: Karbohidrat -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl">🍚</span>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 dark:text-white">1. Karbohidrat Utama (35-45%)</h3>
+              <p class="text-xs text-brand-600 font-semibold">Sumber Tenaga & Kalori</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Pilihan: Beras putih, beras merah, kentang, oat, ubi manis, jagung, atau pasta. Menyuplai energi aktif bagi bayi untuk mengeksplorasi motorik kasarnya.
+          </p>
+        </div>
+
+        <!-- Bintang 2: Protein Hewani -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl">🍗</span>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 dark:text-white">2. Protein Hewani (Zat Besi) (30-35%)</h3>
+              <p class="text-xs text-brand-600 font-semibold">Pencegah Stunting & Nutrisi Otak</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Pilihan: Hati ayam/sapi, daging merah giling, telur, ikan kembung, cumi, udang. Sangat penting diberikan sejak hari pertama MPASI untuk mencegah anemia defisiensi besi.
+          </p>
+        </div>
+
+        <!-- Bintang 3: Lemak Tambahan -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl">🥥</span>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 dark:text-white">3. Lemak Sehat / Fat Booster (15-20%)</h3>
+              <p class="text-xs text-brand-600 font-semibold">Penambah Berat Badan (BB Booster)</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Pilihan: Santan segar, mentega/butter (UB), minyak kelapa, minyak sawit murni, keju, atau minyak zaitun. Membantu penyerapan vitamin A, D, E, K dan menambah kelezatan.
+          </p>
+        </div>
+
+        <!-- Bintang 4: Sayur & Buah -->
+        <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-brand-100 dark:border-brand-900 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl">🥕</span>
+            <div>
+              <h3 class="font-bold text-lg text-gray-900 dark:text-white">4. Sayur & Buah (5-10%)</h3>
+              <p class="text-xs text-brand-600 font-semibold">Pengenalan Rasa & Mikronutrien</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Pilihan: Wortel, labu siam, brokoli, bayam, alpukat, pisang, dan pepaya. Diberikan secukupnya (jangan berlebihan) agar tidak mengganggu kapasitas lambung bayi untuk kalori padat.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tabel Kenaikan Tekstur & Jadwal Makan -->
+    <div class="space-y-6 mb-16">
+      <div class="border-b border-brand-100 dark:border-zinc-800 pb-4">
+        <h2 class="text-2xl font-display font-bold text-gray-900 dark:text-white flex items-center gap-2">
+          <span>🥣</span> Tahapan Tekstur & Porsi Sesuai Usia Bayi
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-3xl border border-brand-100 dark:border-zinc-800 shadow-sm">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-brand-50 dark:bg-zinc-900 text-gray-900 dark:text-white font-bold border-b border-brand-100 dark:border-zinc-800">
+            <tr>
+              <th class="p-4 sm:p-5">Usia Bayi</th>
+              <th class="p-4 sm:p-5">Tekstur MPASI</th>
+              <th class="p-4 sm:p-5">Frekuensi Makan</th>
+              <th class="p-4 sm:p-5">Porsi Sekali Makan</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-100 dark:divide-zinc-800 bg-white dark:bg-zinc-900/60 text-gray-700 dark:text-gray-300">
+            <tr>
+              <td class="p-4 sm:p-5 font-bold text-brand-600">6 - 8 Bulan</td>
+              <td class="p-4 sm:p-5">Bubur kental saring (puree halus dan lumat)</td>
+              <td class="p-4 sm:p-5">2 - 3x makan besar + 1-2x snack</td>
+              <td class="p-4 sm:p-5">2 - 3 sdm bertahap hingga 1/2 mangkok (125 ml)</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-bold text-brand-600">9 - 11 Bulan</td>
+              <td class="p-4 sm:p-5">Makanan cincang halus, cincang kasar, finger food</td>
+              <td class="p-4 sm:p-5">3 - 4x makan besar + 1-2x snack</td>
+              <td class="p-4 sm:p-5">1/2 mangkok hingga 3/4 mangkok (125 - 200 ml)</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-bold text-brand-600">12 - 23 Bulan</td>
+              <td class="p-4 sm:p-5">Makanan keluarga (dihaluskan bila perlu)</td>
+              <td class="p-4 sm:p-5">3 - 4x makan besar + 1-2x snack</td>
+              <td class="p-4 sm:p-5">3/4 hingga 1 mangkok penuh (200 - 250 ml)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Feeding Rules Section -->
+    <div class="p-8 sm:p-10 rounded-3xl bg-brand-500 text-white space-y-4">
+      <h2 class="text-2xl font-display font-extrabold">3 Aturan Emas Feeding Rules Anti Stres</h2>
+      <ul class="space-y-3 text-sm text-rose-50">
+        <li class="flex items-start gap-2">
+          <span>⏱️</span>
+          <span><strong>Batas Waktu:</strong> Proses makan maksimal 30 menit. Setelah itu selesaikan sesi makan agar bayi tidak mengasosiasikan makan dengan kelelahan.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span>📵</span>
+          <span><strong>Bebas Distraksi:</strong> Matikan televisi, jauhkan gawai/smartphone, dan jangan gunakan mainan saat makan agar fokus mengenal rasa dan tekstur.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span>❤️</span>
+          <span><strong>Responsive Feeding:</strong> Jangan memaksa suapan saat bayi menunjukkan tanda kenyang (memalingkan wajah atau menutup mulut). Coba tawarkan kembali pada jadwal makan berikutnya.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</Layout>

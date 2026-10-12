@@ -1,0 +1,169 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #fff1f2;
+    --color-text-primary: #1f2937;
+    --color-text-secondary: #4b5563;
+    --color-border: #fecdd3;
+  }
+
+  .dark {
+    --color-bg-primary: #121012;
+    --color-bg-secondary: #1e1418;
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #d1d5db;
+    --color-border: #4c1d2e;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Custom Glassmorphism Effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(254, 205, 211, 0.5);
+}
+
+.dark .glass-panel {
+  background: rgba(30, 20, 24, 0.85);
+  border: 1px solid rgba(136, 19, 55, 0.35);
+}
+
+/* Custom Soft Gradients */
+.gradient-hero {
+  background: radial-gradient(circle at 10% 20%, rgba(255, 241, 242, 0.8) 0%, rgba(255, 255, 255, 1) 90%);
+}
+
+.dark .gradient-hero {
+  background: radial-gradient(circle at 10% 20%, rgba(76, 29, 46, 0.4) 0%, rgba(18, 16, 18, 1) 90%);
+}
+
+.text-gradient-pink {
+  background: linear-gradient(135deg, #e11d48 0%, #f43f5e 50%, #fb7185 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff1f2;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1e1418;
+}
+::-webkit-scrollbar-thumb {
+  background: #fda4af;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f43f5e;
+}
+
+/* Notion Content Typography */
+.notion-content h1, .notion-content h2, .notion-content h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: #111827;
+  scroll-margin-top: 5rem;
+}
+.dark .notion-content h1, .dark .notion-content h2, .dark .notion-content h3 {
+  color: #f9fafb;
+}
+
+.notion-content h2 {
+  font-size: 1.65rem;
+  margin-top: 2rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #ffe4e6;
+}
+.dark .notion-content h2 {
+  border-bottom-color: #4c1d2e;
+}
+
+.notion-content h3 {
+  font-size: 1.35rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.notion-content p {
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+  color: #374151;
+}
+.dark .notion-content p {
+  color: #d1d5db;
+}
+
+.notion-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.notion-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.notion-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.notion-content blockquote {
+  border-left: 4px solid #f43f5e;
+  padding: 0.75rem 1.25rem;
+  margin: 1.5rem 0;
+  background-color: #fff1f2;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+  color: #881337;
+}
+.dark .notion-content blockquote {
+  background-color: #2b131e;
+  color: #fecdd3;
+  border-left-color: #fb7185;
+}
+
+.notion-content .callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.3rem;
+  margin: 1.5rem 0;
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border: 1px solid #fecdd3;
+  border-radius: 1rem;
+}
+.dark .notion-content .callout {
+  background: linear-gradient(135deg, #2b131e 0%, #1e1418 100%);
+  border-color: #881337;
+}

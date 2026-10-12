@@ -1,0 +1,161 @@
+---
+const navLinks = [
+  { name: 'Beranda', href: '/' },
+  { name: 'Panduan Gizi', href: '/panduan-gizi' },
+  { name: 'Blog MPASI', href: '/blog' },
+  { name: 'Tentang Kami', href: '/about' },
+  { name: 'Kontak & Konsul', href: '/kontak' },
+];
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, '');
+---
+
+<header class="sticky top-0 z-50 glass-panel border-b border-brand-100 dark:border-brand-900 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3 group focus:outline-none" aria-label="Teman Bunda Homepage">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-rose-400 p-0.5 shadow-soft-pink group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+          <div class="w-full h-full bg-white dark:bg-zinc-900 rounded-[14px] flex items-center justify-center">
+            <span class="text-2xl">👶</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-display font-extrabold tracking-tight text-gray-900 dark:text-white flex items-center gap-1.5">
+            TEMAN <span class="text-gradient-pink">BUNDA</span>
+          </span>
+          <span class="text-[11px] font-semibold text-brand-600 dark:text-brand-300 tracking-wider uppercase">
+            Sahabat Nutrisi MPASI
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        {navLinks.map((link) => {
+          const isActive = currentPath === link.href.replace(/\/$/, '') || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                isActive
+                  ? 'bg-brand-500 text-white shadow-sm shadow-brand-500/30'
+                  : 'text-gray-700 dark:text-gray-200 hover:text-brand-600 dark:hover:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-950/50'
+              }`}
+            >
+              {link.name}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Right Actions: Theme Toggle & CTA -->
+      <div class="flex items-center gap-3">
+        <!-- Dark/Light Mode Button -->
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Ubah tema warna gelap atau terang"
+          class="p-2.5 rounded-full text-gray-600 dark:text-gray-300 hover:bg-brand-50 dark:hover:bg-zinc-800 transition-colors focus:outline-none"
+        >
+          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+
+        <!-- CTA Header Button (Desktop) -->
+        <a
+          href="/panduan-gizi"
+          class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full text-xs uppercase font-bold tracking-wider bg-brand-50 text-brand-600 border border-brand-200 hover:bg-brand-500 hover:text-white transition-all duration-300 shadow-sm"
+        >
+          Panduan Golden Age
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="Buka Menu Navigasi"
+          class="md:hidden p-2.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-brand-50 dark:hover:bg-zinc-800 transition-colors"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-brand-100 dark:border-brand-900 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-2">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="block px-4 py-2.5 rounded-xl font-semibold text-gray-700 dark:text-gray-200 hover:bg-brand-50 dark:hover:bg-brand-950/60 hover:text-brand-600 dark:hover:text-brand-300 transition-colors"
+      >
+        {link.name}
+      </a>
+    ))}
+    <div class="pt-2">
+      <a
+        href="/panduan-gizi"
+        class="block text-center w-full py-3 rounded-xl font-bold bg-brand-500 text-white shadow-soft-pink"
+      >
+        Mulai Panduan Golden Age 🌟
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  // Script Pengaturan Tema Gelap / Terang
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+  function updateThemeIcons() {
+    if (document.documentElement.classList.contains('dark')) {
+      darkIcon.classList.add('hidden');
+      lightIcon.classList.remove('hidden');
+    } else {
+      lightIcon.classList.add('hidden');
+      darkIcon.classList.remove('hidden');
+    }
+  }
+
+  // Cek preferensi awal
+  if (
+    localStorage.theme === 'dark' ||
+    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+  updateThemeIcons();
+
+  themeToggleBtn?.addEventListener('click', () => {
+    if (document.documentElement.classList.contains('dark')) {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+    }
+    updateThemeIcons();
+  });
+
+  // Mobile Menu Toggle
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,0 +1,136 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+  author?: string;
+  publishDate?: string;
+  modifiedDate?: string;
+  tags?: string[];
+  breadcrumbs?: { name: string; item: string }[];
+}
+
+const {
+  title = 'TEMAN BUNDA - Sahabat Nutrisi & Panduan MPASI Masa Golden Age',
+  description = 'Panduan lengkap MPASI sehat bergizi untuk ibu newborn. Optimalkan pertumbuhan dan kecerdasan anak di masa golden age dengan nutrisi seimbang anti stunting.',
+  image = 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=1200&q=80',
+  canonical = Astro.url.href,
+  type = 'website',
+  author = 'Tim Ahli Teman Bunda',
+  publishDate,
+  modifiedDate,
+  tags = ['MPASI', 'Golden Age', 'Gizi Anak', 'Teman Bunda'],
+  breadcrumbs = [],
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://temanbunda.vercel.app';
+const fullTitle = title.includes('TEMAN BUNDA') ? title : `${title} | TEMAN BUNDA`;
+const resolvedImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Schema.org JSON-LD definitions
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Teman Bunda',
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  description: 'Pusat Edukasi MPASI dan Gizi Anak Masa Golden Age untuk Ibu Newborn Indonesia',
+  sameAs: [
+    'https://instagram.com/temanbunda.id',
+    'https://tiktok.com/@temanbunda'
+  ]
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Teman Bunda - MPASI & Gizi Golden Age',
+  url: siteUrl,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}/blog?q={search_term_string}`,
+    'query-input': 'required name=search_term_string'
+  }
+};
+
+const articleSchema = type === 'article' ? {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonical
+  },
+  headline: title,
+  description: description,
+  image: [resolvedImage],
+  datePublished: publishDate || new Date().toISOString(),
+  dateModified: modifiedDate || publishDate || new Date().toISOString(),
+  author: {
+    '@type': 'Person',
+    name: author
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Teman Bunda',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/favicon.svg`
+    }
+  },
+  keywords: tags.join(', ')
+} : null;
+
+const breadcrumbsSchema = breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: b.name,
+    item: b.item.startsWith('http') ? b.item : `${siteUrl}${b.item}`
+  }))
+} : null;
+---
+
+<!-- Essential Meta Tags -->
+<title>{fullTitle}</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:image:alt" content={fullTitle} />
+<meta property="og:site_name" content="Teman Bunda" />
+<meta property="og:locale" content="id_ID" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonical} />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+
+<!-- Google Fonts Preconnect for Performance & LCP -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Favicon & Brand Colors -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="theme-color" content="#f43f5e" />
+
+<!-- Schema.org JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+{articleSchema && <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}
+{breadcrumbsSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbsSchema)} />}
